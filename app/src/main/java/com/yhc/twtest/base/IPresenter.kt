@@ -1,5 +1,5 @@
 package com.yhc.twtest.base
 
-interface IPresenter <V>{
+interface IPresenter <M>{
 
 }

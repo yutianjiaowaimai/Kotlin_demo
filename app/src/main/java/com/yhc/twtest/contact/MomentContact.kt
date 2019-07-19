@@ -3,7 +3,6 @@ package com.yhc.twtest.contact
 import com.yhc.twtest.base.BaseModel
 import com.yhc.twtest.base.BasePresenter
 import com.yhc.twtest.base.BaseView
-import com.yhc.twtest.base.IPresenter
 import com.yhc.twtest.bean.Moment
 import com.yhc.twtest.bean.User
 import io.reactivex.Observable

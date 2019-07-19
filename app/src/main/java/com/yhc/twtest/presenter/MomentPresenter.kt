@@ -7,7 +7,6 @@ import com.yhc.twtest.bean.User
 import com.yhc.twtest.contact.MomentContact
 import com.yhc.twtest.model.MomentModel
 import com.yhc.twtest.network.NetworkResultDeal
-import com.yhc.twtest.network.NetworkScheduler
 import com.yhc.twtest.network.ResultCallBack
 import io.reactivex.functions.Function
 import okhttp3.ResponseBody
@@ -36,14 +35,17 @@ class MomentPresenter: MomentContact.Presenter{
                 })?.subscribe(NetworkResultDeal(
                         object: ResultCallBack<List<Moment>>{
                             override fun onSuccess(t: List<Moment>) {
+
                                 //获取朋友圈条目数据成功
-//                                if(t.()){
-//                                    allDataList = t.filterNot {
-//                                        it.sender == null && it.content.isNullOrEmpty() && it.images.isNotEmpty()
-//                                    }.apply {  }
-//                                }
-//                                t.slice(0..2)
-                                view?.showMoment(t,false)
+                                if(!t.isNullOrEmpty()){
+                                    allDataList = t.filterNot {
+                                        it.sender == null && it.content.isNullOrEmpty() && it.images.isNullOrEmpty()
+                                    }.apply {
+                                        pageCount = Math.ceil((size/5f).toDouble()).toInt()
+                                        view?.showMoment(slice(0 .. pageIndex * 5 - 1),false)
+                                    }
+                                }
+
                             }
 
                             override fun onFail(failMsg: String) {
@@ -75,10 +77,13 @@ class MomentPresenter: MomentContact.Presenter{
         pageIndex ++
         if(pageIndex > pageCount){
             //没有更多数据
+            view?.noMoreData()
         }else if(pageIndex == pageCount){
             //最后一页
+            view?.showMoment(allDataList.slice((pageIndex - 1) * 5 .. allDataList.size - 1),true)
         }else{
             //其他页
+            view?.showMoment(allDataList.slice((pageIndex - 1) * 5 .. pageIndex * 5 - 1),true)
         }
     }
 
