@@ -47,14 +47,14 @@
                     <TextView
                         android:id="@+id/tv_blank"
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
+                        android:layout_height="@dimen/dp_30"
                         android:layout_below="@+id/iv_profile"
-                        android:background="@android:color/white" />
+                        android:background="@android:color/transparent" />
 
                     <ImageView
                         android:id="@+id/iv_user"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="@dimen/dp_80"
                         android:scaleType="centerCrop"
                         android:layout_alignParentBottom="true"
                         android:layout_marginRight="@dimen/dp_10"
@@ -68,7 +68,7 @@
                         android:layout_toLeftOf="@+id/iv_user"
                         android:layout_above="@+id/tv_blank"
                         android:padding="@dimen/dp_10"
-                        android:textSize="17sp"
+                        android:textSize="@dimen/sp_17"
                         android:textColor="@android:color/white"
                         android:text="我是谁" />
 
@@ -79,8 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
-                    android:descendantFocusability="blocksDescendants"
-                    android:layout_marginTop="@dimen/dp_10">
+                    android:descendantFocusability="blocksDescendants">
 
                 </android.support.v7.widget.RecyclerView>
 
@@ -98,7 +97,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@android:color/transparent"
+        android:background="@color/bg_title"
         android:layout_marginBottom="0dp"
         app:navigationIcon="?attr/homeAsUpIndicator"
        >
@@ -112,7 +111,7 @@
                 android:layout_gravity="left"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textSize="17sp"
+                android:textSize="18sp"
                 android:text="朋友圈" />
 
         </android.support.v7.widget.ButtonBarLayout>

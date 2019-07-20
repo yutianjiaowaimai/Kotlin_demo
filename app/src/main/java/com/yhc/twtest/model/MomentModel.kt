@@ -8,7 +8,7 @@ import com.yhc.twtest.network.NetworkScheduler
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 
-class MomentModel: MomentContact.Model {
+class MomentModel : MomentContact.Model {
 
     //获取朋友圈条目
     override fun getMoments(): Observable<ResponseBody> {

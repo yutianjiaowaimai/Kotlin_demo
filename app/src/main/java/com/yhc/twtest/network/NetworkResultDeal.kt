@@ -3,7 +3,7 @@ package com.yhc.twtest.network
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
-class NetworkResultDeal<T>(val resultCallBack: ResultCallBack<T>): Observer<T> {
+class NetworkResultDeal<T>(val resultCallBack: ResultCallBack<T>) : Observer<T> {
 
     override fun onComplete() {
 

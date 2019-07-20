@@ -6,7 +6,7 @@ import com.trello.rxlifecycle2.android.FragmentEvent
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import com.trello.rxlifecycle2.components.support.RxFragment
 
-abstract class BasePresenter<V,M>: IPresenter<M> {
+abstract class BasePresenter<V, M> : IPresenter<M> {
 
     var view: V? = null
     var model: M? = null

@@ -2,12 +2,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="@dimen/dp_10">
 
     <ImageView
         android:id="@+id/iv_sender"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
         android:scaleType="centerCrop"
         android:src="@drawable/bg_profile"
         android:layout_margin="@dimen/dp_10"/>
@@ -16,39 +18,73 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/iv_sender"
-        android:layout_marginTop="@dimen/dp_10"
-        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_6"
+        android:layout_marginRight="@dimen/dp_20"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_sender_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="16sp"
-            android:text="AAA"
+            android:textSize="@dimen/sp_18"
+            android:textColor="@color/name"
             />
 
         <TextView
             android:id="@+id/tv_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_10"
-            android:textSize="15sp"
-            android:layout_marginRight="20dp"
-            android:text="AAA"/>
+            android:layout_marginTop="@dimen/dp_2"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/content"
+            android:layout_marginRight="@dimen/dp_20" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_image"
             android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_marginRight="@dimen/dp_10"
             android:layout_height="wrap_content">
         </android.support.v7.widget.RecyclerView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/time"
+                android:textSize="@dimen/sp_12"
+                android:text="@string/time"/>
+
+            <RelativeLayout
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_20"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_item_dot">
+                <View
+                android:layout_width="@dimen/dp_4"
+                android:layout_height="@dimen/dp_4"
+                android:layout_marginLeft="@dimen/dp_8"
+                android:background="@drawable/item_dot"
+                android:layout_centerVertical="true"/>
+                <View
+                    android:layout_width="@dimen/dp_4"
+                    android:layout_height="@dimen/dp_4"
+                    android:background="@drawable/item_dot"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp_8"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+        </RelativeLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_comments"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/bg_item_comments"
+            >
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 

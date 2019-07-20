@@ -10,23 +10,23 @@ import okhttp3.ResponseBody
 
 interface MomentContact {
 
-    interface View: BaseView{
+    interface View : BaseView {
 
-        fun showMoment(list: List<Moment>,isLoadeMore: Boolean)
+        fun showMoment(list: List<Moment>, isLoadeMore: Boolean)
 
         fun showUserInfo(user: User)
 
         fun noMoreData()
     }
 
-    interface Model: BaseModel{
+    interface Model : BaseModel {
 
-        fun getMoments():Observable<ResponseBody>
+        fun getMoments(): Observable<ResponseBody>
 
-        fun getUserInfo():Observable<User>
+        fun getUserInfo(): Observable<User>
     }
 
-    abstract class Presenter: BasePresenter<View,Model>(){
+    abstract class Presenter : BasePresenter<View, Model>() {
 
         abstract fun getMoments()
 

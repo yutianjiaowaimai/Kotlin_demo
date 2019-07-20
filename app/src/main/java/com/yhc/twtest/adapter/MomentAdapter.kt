@@ -38,29 +38,29 @@ class MomentAdapter(mContext: Context, itemLayoutId: Int, data: List<Moment>) : 
             }
 
             getView<RecyclerView>(R.id.rv_image).apply {
-                if(!item.images.isNullOrEmpty()){
+                if (!item.images.isNullOrEmpty()) {
                     var columnCount = 1
-                    when(item.images?.size){
+                    when (item.images?.size) {
                         1 -> columnCount = 1
                         2 -> columnCount = 2
                         else -> columnCount = 3
                     }
 
-                    layoutManager = GridLayoutManager(mContext,columnCount)
-                    adapter = ImageAdapter(mContext,R.layout.item_image,item.images,columnCount)
+                    layoutManager = GridLayoutManager(mContext, columnCount)
+                    adapter = ImageAdapter(mContext, R.layout.item_image, item.images, columnCount)
                 }
             }
 
             getView<RecyclerView>(R.id.rv_comments).apply {
-                if(!item.comments.isNullOrEmpty()){
+                if (!item.comments.isNullOrEmpty()) {
                     layoutManager = LinearLayoutManager(mContext)
-                    adapter = CommentAdapter(R.layout.item_comment,item.comments)
+                    adapter = CommentAdapter(R.layout.item_comment, item.comments)
                 }
 
             }
 
-            setText(R.id.tv_sender_name,item.sender?.nick)
-            setText(R.id.tv_content,item.content)
+            setText(R.id.tv_sender_name, item.sender?.nick)
+            setText(R.id.tv_content, item.content)
 
         }
 

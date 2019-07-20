@@ -8,6 +8,6 @@
         android:id="@+id/iv_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/dp_1"
         android:scaleType="centerCrop"/>
 </RelativeLayout>

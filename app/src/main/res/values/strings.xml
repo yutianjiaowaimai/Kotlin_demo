@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TWTest</string>
+    <string name="moments">朋友圈</string>
+    <string name="time">1分钟前</string>
 </resources>

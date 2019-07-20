@@ -3,7 +3,7 @@ package com.yhc.twtest.base
 import android.os.Bundle
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 
-abstract class BaseActivity<M: BaseModel,P: IPresenter<M>>: RxAppCompatActivity(){
+abstract class BaseActivity<M : BaseModel, P : IPresenter<M>> : RxAppCompatActivity() {
 
     protected var mPresenter: P? = null
 
@@ -19,5 +19,5 @@ abstract class BaseActivity<M: BaseModel,P: IPresenter<M>>: RxAppCompatActivity(
 
     abstract fun creatPresenter(): P
 
-    abstract val layoutId:Int
+    abstract val layoutId: Int
 }

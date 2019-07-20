@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="name">#586B95</color>
+    <color name="bg_title">#EDEDED</color>
+    <color name="bg_comment">#F1F1F1</color>
+    <color name="content">#333333</color>
+    <color name="time">#666666</color>
 </resources>

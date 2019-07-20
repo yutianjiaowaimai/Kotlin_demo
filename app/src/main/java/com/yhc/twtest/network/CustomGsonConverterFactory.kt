@@ -12,7 +12,7 @@ import java.lang.reflect.Type
 /**
  * 参照GsonConverterFactory
  */
-class CustomGsonConverterFactory private constructor(private val gson: Gson) : Converter.Factory(){
+class CustomGsonConverterFactory private constructor(private val gson: Gson) : Converter.Factory() {
 
     override fun responseBodyConverter(
             type: Type?, annotations: Array<Annotation>?,
