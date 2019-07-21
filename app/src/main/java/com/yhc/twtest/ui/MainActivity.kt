@@ -1,5 +1,6 @@
 package com.yhc.twtest.ui
 
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.NestedScrollView
@@ -24,6 +25,7 @@ import com.yhc.twtest.base.BaseActivity
 import com.yhc.twtest.bean.Moment
 import com.yhc.twtest.bean.User
 import com.yhc.twtest.contact.MomentContact
+import com.yhc.twtest.glide.MyGlide
 import com.yhc.twtest.presenter.MomentPresenter
 import com.yhc.twtest.utils.SmartUtil
 import com.yhc.twtest.utils.StatusBarUtil
@@ -35,24 +37,31 @@ class MainActivity : BaseActivity<MomentContact.Model, MomentContact.Presenter>(
     val refreshLayou: SmartRefreshLayout by lazy {
         findViewById<SmartRefreshLayout>(R.id.srl)
     }
+
     val rvMoment: RecyclerView by lazy {
         findViewById<RecyclerView>(R.id.rv_moment)
     }
+
     val nestedScrollView: NestedScrollView by lazy {
         findViewById<NestedScrollView>(R.id.nsv_top)
     }
+
     val toolBar: Toolbar by lazy {
         findViewById<Toolbar>(R.id.toolbar)
     }
+
     val buttonBar: ButtonBarLayout by lazy {
         findViewById<ButtonBarLayout>(R.id.bbl_title)
     }
+
     val tvUserName: TextView by lazy {
         findViewById<TextView>(R.id.tv_user)
     }
+
     val ivAvatar: ImageView by lazy {
         findViewById<ImageView>(R.id.iv_user)
     }
+
     val ivProfile: ImageView by lazy {
         findViewById<ImageView>(R.id.iv_profile)
     }
@@ -134,6 +143,7 @@ class MainActivity : BaseActivity<MomentContact.Model, MomentContact.Presenter>(
         } else {
             adapter.setNewData(list)
             refreshLayou.finishRefresh()
+            refreshLayou.setNoMoreData(false)
         }
     }
 
@@ -142,20 +152,33 @@ class MainActivity : BaseActivity<MomentContact.Model, MomentContact.Presenter>(
      */
     override fun showUserInfo(user: User) {
         tvUserName.text = user?.nick
-        Glide.with(this).load(user?.avatar).into(ivAvatar)
-        Glide.with(this).load(user?.profile_image).addListener(
-                object : RequestListener<Drawable> {
-                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                        ivProfile.setImageResource(R.drawable.bg_profile)
-                        return true
+
+        MyGlide.with(this).loading(R.drawable.bg_profile).load(user?.avatar).into(ivAvatar)
+        MyGlide.with(this).loading(R.drawable.bg_profile).load(user?.profile_image).listener(
+                object :com.yhc.twtest.glide.RequestListener{
+                    override fun onSuccess(bitmap: Bitmap) {
                     }
 
-                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                        return false
+                    override fun error() {
+                        ivProfile.setImageResource(R.drawable.bg_profile)
                     }
 
                 }
         ).into(ivProfile)
+
+//        Glide.with(this).load(user?.profile_image).addListener(
+//                object : RequestListener<Drawable> {
+//                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+//                        ivProfile.setImageResource(R.drawable.bg_profile)
+//                        return true
+//                    }
+//
+//                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+//                        return false
+//                    }
+//
+//                }
+//        ).into(ivProfile)
 
     }
 

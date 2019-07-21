@@ -1,5 +1,7 @@
 package com.yhc.twtest.presenter
 
+import android.os.Handler
+import android.os.Looper
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.yhc.twtest.bean.Moment
@@ -19,6 +21,9 @@ class MomentPresenter : MomentContact.Presenter {
     private var pageCount = 0
     //总条目集合
     private var allDataList: List<Moment> = listOf()
+
+    //创建一个handler模拟延时
+    private val handler = Handler(Looper.getMainLooper())
 
     //绑定
     constructor(view: MomentContact.View) {
@@ -74,17 +79,22 @@ class MomentPresenter : MomentContact.Presenter {
     }
 
     override fun loadMore() {
-        pageIndex++
-        if (pageIndex > pageCount) {
-            //没有更多数据
-            view?.noMoreData()
-        } else if (pageIndex == pageCount) {
-            //最后一页
-            view?.showMoment(allDataList.slice((pageIndex - 1) * 5..allDataList.size - 1), true)
-        } else {
-            //其他页
-            view?.showMoment(allDataList.slice((pageIndex - 1) * 5..pageIndex * 5 - 1), true)
-        }
+        handler.postDelayed(Runnable {
+
+            pageIndex++
+            if (pageIndex > pageCount) {
+                //没有更多数据
+                view?.noMoreData()
+            } else if (pageIndex == pageCount) {
+                //最后一页
+                view?.showMoment(allDataList.slice((pageIndex - 1) * 5..allDataList.size - 1), true)
+            } else {
+                //其他页
+                view?.showMoment(allDataList.slice((pageIndex - 1) * 5..pageIndex * 5 - 1), true)
+            }
+
+        },2000)
+
     }
 
     override fun refresh() {

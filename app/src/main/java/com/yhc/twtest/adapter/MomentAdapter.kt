@@ -1,6 +1,7 @@
 package com.yhc.twtest.adapter
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.yhc.twtest.R
 import com.yhc.twtest.bean.Moment
+import com.yhc.twtest.glide.MyGlide
 
 class MomentAdapter(mContext: Context, itemLayoutId: Int, data: List<Moment>) : BaseQuickAdapter<Moment, BaseViewHolder>(itemLayoutId, data) {
 
@@ -22,15 +24,14 @@ class MomentAdapter(mContext: Context, itemLayoutId: Int, data: List<Moment>) : 
 
         helper.apply {
             getView<ImageView>(R.id.iv_sender).let {
-                Glide.with(mContext).load(item.sender?.avatar).addListener(
-                        object : RequestListener<Drawable> {
-                            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                                it.setImageResource(R.drawable.bg_profile)
-                                return true
+
+                MyGlide.with(mContext).loading(R.drawable.bg_profile).load(item.sender?.avatar).listener(
+                        object :com.yhc.twtest.glide.RequestListener{
+                            override fun onSuccess(bitmap: Bitmap) {
                             }
 
-                            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                                return false
+                            override fun error() {
+                                it.setImageResource(R.drawable.bg_profile)
                             }
 
                         }
