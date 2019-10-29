@@ -20,6 +20,7 @@ class RequestManager {
         //当前手机最大工作线程数
         val availableProcessors = Runtime.getRuntime().availableProcessors()
         for(index in 1..availableProcessors){
+
             val dispatcher = ImageDispatcher(requestQueue)
             dispatcher.start()
             imageDispatcher.add(dispatcher)

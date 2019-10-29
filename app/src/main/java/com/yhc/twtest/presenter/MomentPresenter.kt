@@ -40,7 +40,6 @@ class MomentPresenter : MomentContact.Presenter {
                 })?.subscribe(NetworkResultDeal(
                         object : ResultCallBack<List<Moment>> {
                             override fun onSuccess(t: List<Moment>) {
-
                                 //获取朋友圈条目数据成功
                                 if (!t.isNullOrEmpty()) {
                                     allDataList = t.filterNot {

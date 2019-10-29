@@ -13,6 +13,7 @@ import java.util.concurrent.LinkedBlockingQueue
 class ImageDispatcher(var requestQueue: LinkedBlockingQueue<ImageRequest>): Thread() {
 
     val handler = Handler(Looper.getMainLooper())
+
     override fun run() {
 
         while (!isInterrupted){

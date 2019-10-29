@@ -25,6 +25,7 @@ import com.yhc.twtest.base.BaseActivity
 import com.yhc.twtest.bean.Moment
 import com.yhc.twtest.bean.User
 import com.yhc.twtest.contact.MomentContact
+import com.yhc.twtest.glide.ImageLoader
 import com.yhc.twtest.glide.MyGlide
 import com.yhc.twtest.presenter.MomentPresenter
 import com.yhc.twtest.utils.SmartUtil
@@ -128,6 +129,7 @@ class MainActivity : BaseActivity<MomentContact.Model, MomentContact.Presenter>(
      * 状态栏透明和间距处理
      */
     private fun setStatuBar() {
+
         StatusBarUtil.immersive(this)
         StatusBarUtil.setPaddingSmart(this, toolBar)
         StatusBarUtil.setMargin(this, findViewById(R.id.header))
@@ -154,9 +156,11 @@ class MainActivity : BaseActivity<MomentContact.Model, MomentContact.Presenter>(
         tvUserName.text = user?.nick
 
         MyGlide.with(this).loading(R.drawable.bg_profile).load(user?.avatar).into(ivAvatar)
+        ImageLoader(this).setLoadingId(R.drawable.bg_profile).setRequestUrl(user?.avatar).setTargetView(ivAvatar).load()
         MyGlide.with(this).loading(R.drawable.bg_profile).load(user?.profile_image).listener(
                 object :com.yhc.twtest.glide.RequestListener{
                     override fun onSuccess(bitmap: Bitmap) {
+
                     }
 
                     override fun error() {
